@@ -16,11 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import java.util.EventObject;
 
 /**
  * 
@@ -28,14 +26,28 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class TreeViewSelEvent extends EventObject {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    private static final long serialVersionUID = -2759577586441800755L;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    private TreeViewNode selNode;
+    private boolean doubleClick;
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public TreeViewSelEvent(Object source, TreeViewNode node) {
+        this(source, node, false);
+    }
+
+    public TreeViewSelEvent(Object source, TreeViewNode node, boolean dblClick) {
+        super(source);
+
+        this.selNode = node;
+        this.doubleClick = dblClick;
+    }
+
+    public TreeViewNode getSelectedNode() {
+        return this.selNode;
+    }
+    public boolean isDoubleClicked() {
+        return this.doubleClick;
+    }
 }

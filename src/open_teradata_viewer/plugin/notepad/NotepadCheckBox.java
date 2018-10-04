@@ -16,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
+import java.awt.Graphics;
 
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import javax.swing.JCheckBox;
 
 /**
  * 
@@ -28,14 +28,22 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class NotepadCheckBox extends JCheckBox {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    private static final long serialVersionUID = 5378795778104318385L;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    public NotepadCheckBox() {
+        setFont(CustomLook.labelFont);
+    }
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public NotepadCheckBox(String text) {
+        super(text);
+
+        setFont(CustomLook.labelFont);
+    }
+
+    public void paintComponent(Graphics g) {
+        CustomLook.setup(g);
+        super.paintComponent(g);
+    }
 }

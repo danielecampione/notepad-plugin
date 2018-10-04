@@ -16,26 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
-
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+package open_teradata_viewer.plugin.notepad;
 
 /**
- * 
- * 
- * @author D. Campione
  *
+ *
+ * @author  D. Campione
+ * 
  */
-public class Actions {
+public class PageMargins {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    public float left;
+    public float top;
+    public float right;
+    public float bottom;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
-
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public PageMargins(float left, float top, float right, float bottom) {
+        this.left = left;
+        this.top = top;
+        this.right = right;
+        this.bottom = bottom;
+    }
 }

@@ -16,11 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
+import java.awt.Component;
 
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * 
@@ -28,14 +29,21 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class FlexTableRenderer extends DefaultTableCellRenderer {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    private static final long serialVersionUID = -8697903968594641915L;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    private NotepadComboBox tCombo;
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public FlexTableRenderer(NotepadComboBox combo) {
+        this.tCombo = combo;
+    }
+
+    public Component getTableCellRendererComponent(JTable table, Object data,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+        Object newData = this.tCombo.getItemFromKey(data.toString());
+
+        return super.getTableCellRendererComponent(table, newData, isSelected,
+                hasFocus, row, column);
+    }
 }

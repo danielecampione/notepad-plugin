@@ -16,11 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import java.awt.Cursor;
 
 /**
  * 
@@ -28,14 +26,18 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public abstract interface TreeViewDndHandler {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    public static final int ACCEPT_NONE = 0;
+    public static final int ACCEPT_INSIDE = 1;
+    public static final int ACCEPT_BEFORE = 2;
+    public static final int ACCEPT_AFTER = 3;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    public abstract int acceptDrop(TreeViewNode paramTreeViewNode1,
+            TreeViewNode paramTreeViewNode2);
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public abstract void handleDrop(TreeViewNode paramTreeViewNode1,
+            TreeViewNode paramTreeViewNode2);
+
+    public abstract Cursor getNoDropCursor();
 }

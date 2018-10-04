@@ -16,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
+import java.awt.CardLayout;
 
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import javax.swing.JPanel;
 
 /**
  * 
@@ -28,14 +28,32 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class MultiPanel extends JPanel {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    private static final long serialVersionUID = 5870622682542482779L;
+    CardLayout cardLayout = new CardLayout();
+    String stack1;
+    String stack2;
+    String stack3;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    public MultiPanel() {
+        setLayout(this.cardLayout);
+    }
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public void show(String strPanel) {
+        this.cardLayout.show(this, strPanel);
+    }
+
+    public void push() {
+        this.stack3 = this.stack2;
+        this.stack2 = this.stack1;
+        this.stack1 = this.cardLayout.toString();
+    }
+
+    public void pop() {
+        this.cardLayout.show(this, this.stack1);
+
+        this.stack1 = this.stack2;
+        this.stack2 = this.stack3;
+    }
 }

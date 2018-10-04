@@ -16,11 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import java.util.Vector;
 
 /**
  * 
@@ -28,14 +26,28 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class RecentFiles {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    private static final int MAX_FILES = 10;
+    private Vector<String> vFiles = new Vector<String>();
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    public void clear() {
+        this.vFiles.removeAllElements();
+    }
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public void addFile(String file) {
+        this.vFiles.remove(file);
+        this.vFiles.insertElementAt(file, 0);
+
+        if (this.vFiles.size() > MAX_FILES)
+            this.vFiles.remove(MAX_FILES);
+    }
+
+    public String getFileAt(int index) {
+        return (String) this.vFiles.elementAt(index);
+    }
+
+    public int getFileCount() {
+        return this.vFiles.size();
+    }
 }

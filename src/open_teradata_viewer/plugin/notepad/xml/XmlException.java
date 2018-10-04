@@ -1,5 +1,5 @@
 /*
- * Open Teradata Viewer ( notepad plugin )
+ * Open Teradata Viewer ( notepad plugin xml )
  * Copyright (C) 2012, D. Campione
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,11 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
-
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+package open_teradata_viewer.plugin.notepad.xml;
 
 /**
  * 
@@ -28,14 +24,11 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class XmlException extends Exception {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    private static final long serialVersionUID = -7578033278056762354L;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
-
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public XmlException(String message) {
+        super(message);
+    }
 }

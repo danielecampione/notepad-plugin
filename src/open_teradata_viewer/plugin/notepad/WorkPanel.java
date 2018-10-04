@@ -16,11 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import javax.swing.JPanel;
+import javax.swing.text.html.HTML;
 
 /**
  * 
@@ -28,14 +27,31 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class WorkPanel extends MultiPanel {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    private static final long serialVersionUID = -4862828612113065744L;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    private ContentPanel panContent = new ContentPanel();
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    /** Ctor. */
+    public WorkPanel() {
+        add("blank", new JPanel());
+        add("content", panContent);
+    }
+
+    public void refresh(ElementInfo info, HtmlToolkit kit) {
+        if (info == null) {
+            show("blank");
+            return;
+        }
+
+        if (info.tag == HTML.Tag.CONTENT || info.tag == HTML.Tag.P) {
+            panContent.refresh(info, kit);
+            show("content");
+        }
+
+        else {
+            show("blank");
+        }
+    }
 }

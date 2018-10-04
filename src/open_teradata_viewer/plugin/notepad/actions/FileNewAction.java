@@ -20,8 +20,10 @@ package open_teradata_viewer.plugin.notepad.actions;
 
 import java.awt.event.ActionEvent;
 
-import net.sourceforge.open_teradata_viewer.ApplicationFrame;
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import javax.swing.AbstractAction;
+
+import net.sourceforge.open_teradata_viewer.Main;
+import open_teradata_viewer.plugin.notepad.HtmlEditorPanel;
 import open_teradata_viewer.plugin.notepad.NotepadPlugin;
 
 /**
@@ -30,28 +32,26 @@ import open_teradata_viewer.plugin.notepad.NotepadPlugin;
  * @author D. Campione
  *
  */
-public class NotepadAction extends CustomAction {
+public class FileNewAction extends AbstractAction {
 
-    private static final long serialVersionUID = -247597193455004912L;
+    private static final long serialVersionUID = 3867300205346273010L;
 
-    protected NotepadAction() {
-        super("Notepad..", "notepad.png", null, "An embedded notepad.");
+    /** Ctor. */
+    protected FileNewAction() {
+        super(NotepadPlugin.newAction);
         setEnabled(true);
     }
 
-    public void actionPerformed(final ActionEvent e) {
-        // The "Notepad plug-in" can be used altough other processes are
-        // running. No ThreadAction object must be instantiated because the
-        // focus must still remains on the Notepad frame.
-        try {
-            performThreaded(e);
-        } catch (Throwable t) {
-            ApplicationFrame.getInstance().printStackTraceOnGUI(t);
-        }
-    }
-
     @Override
-    protected void performThreaded(ActionEvent e) throws Exception {
-        NotepadPlugin.getInstance().startPluginEntry();
+    public void actionPerformed(ActionEvent e) {
+        HtmlEditorPanel htmlEditorPanel = NotepadPlugin.getInstance()
+                .getEditor().getPaneEditor();
+        htmlEditorPanel.getTextComponent().setText("");
+        NotepadPlugin
+                .getInstance()
+                .getFrame()
+                .setTitle(
+                        Main.APPLICATION_NAME + " ( "
+                                + NotepadPlugin.getInstance() + " )");
     }
 }

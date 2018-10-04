@@ -1,6 +1,6 @@
 /*
  * Open Teradata Viewer ( notepad plugin )
- * Copyright (C) 2011, D. Campione
+ * Copyright (C) 2012, D. Campione
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.util;
+package open_teradata_viewer.plugin.notepad;
 
-import java.io.InputStream;
-import java.net.URL;
+import java.awt.Graphics;
 
 /**
  * 
@@ -27,21 +26,10 @@ import java.net.URL;
  * @author D. Campione
  *
  */
-public class ResourceLoader {
+public abstract interface PrintRow {
 
-    static ResourceLoader resourceLoader = new ResourceLoader();
+    public abstract void print(Graphics paramGraphics, PrintInfo paramPrintInfo);
 
-    private ClassLoader getClassLoader() {
-        return this.getClass().getClassLoader();
-    }
+    public abstract int getHeight();
 
-    public static synchronized InputStream getResourceAsStream(
-            String resourceName) {
-        return resourceLoader.getClassLoader()
-                .getResourceAsStream(resourceName);
-    }
-
-    public static synchronized URL getResource(String resourceName) {
-        return resourceLoader.getClassLoader().getResource(resourceName);
-    }
 }

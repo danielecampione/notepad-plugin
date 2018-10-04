@@ -1,6 +1,6 @@
 /*
  * Open Teradata Viewer ( notepad plugin )
- * Copyright (C) 2011, D. Campione
+ * Copyright (C) 2012, D. Campione
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.util;
+package open_teradata_viewer.plugin.notepad;
 
-import java.net.URL;
+import java.awt.Dimension;
 
-import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JSplitPane;
 
 /**
  * 
@@ -28,18 +29,24 @@ import javax.swing.ImageIcon;
  * @author D. Campione
  *
  */
-public class ImageUtil {
+public class NotepadSplitPane extends JSplitPane {
 
-    public static synchronized ImageIcon getImageIcon(String iconName) {
-        URL url;
+    private static final long serialVersionUID = -7700936646620267637L;
 
-        iconName = "icons/" + iconName + ".gif";
+    public NotepadSplitPane(JComponent c1, JComponent c2) {
+        this(1, c1, c2);
+    }
 
-        url = ResourceLoader.getResource(iconName);
-        if (url == null) {
-            return null;
-        }
+    public NotepadSplitPane(int orientation, JComponent c1, JComponent c2) {
+        super(orientation, c1, c2);
 
-        return new ImageIcon(url);
+        setOneTouchExpandable(true);
+        setDividerLocation(200);
+        setContinuousLayout(true);
+
+        Dimension d = new Dimension(100, 50);
+
+        c1.setMinimumSize(d);
+        c2.setMinimumSize(d);
     }
 }

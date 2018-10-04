@@ -16,11 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * 
@@ -28,14 +27,21 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class ResourceLoader {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    static ResourceLoader resourceLoader = new ResourceLoader();
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    private ClassLoader getClassLoader() {
+        return getClass().getClassLoader();
+    }
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public static synchronized InputStream getResourceAsStream(
+            String resourceName) {
+        return resourceLoader.getClassLoader()
+                .getResourceAsStream(resourceName);
+    }
+
+    public static synchronized URL getResource(String resourceName) {
+        return resourceLoader.getClassLoader().getResource(resourceName);
+    }
 }

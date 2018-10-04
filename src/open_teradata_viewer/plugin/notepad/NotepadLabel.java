@@ -16,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
+import java.awt.Graphics;
 
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import javax.swing.JLabel;
 
 /**
  * 
@@ -28,14 +28,26 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class NotepadLabel extends JLabel {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    private static final long serialVersionUID = -1060582406448359099L;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    public NotepadLabel() {
+        this("");
+    }
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public NotepadLabel(String text) {
+        this(text, 2);
+    }
+
+    public NotepadLabel(String text, int horizAlign) {
+        super(text, horizAlign);
+
+        setFont(CustomLook.labelFont);
+    }
+
+    public void paintComponent(Graphics g) {
+        CustomLook.setup(g);
+        super.paintComponent(g);
+    }
 }

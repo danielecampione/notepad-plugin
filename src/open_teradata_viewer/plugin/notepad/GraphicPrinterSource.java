@@ -16,11 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import java.awt.Graphics;
 
 /**
  * 
@@ -28,14 +26,16 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public abstract interface GraphicPrinterSource {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    public abstract int getWidth();
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    public abstract int getHeight();
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    public abstract PrintRow getHeader();
+
+    public abstract PrintRow getFooter();
+
+    public abstract void print(Graphics paramGraphics);
+
 }

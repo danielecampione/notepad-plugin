@@ -1,5 +1,5 @@
 /*
- * Open Teradata Viewer ( notepad plugin )
+ * Open Teradata Viewer ( notepad plugin xml )
  * Copyright (C) 2012, D. Campione
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,11 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad.xml;
 
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import open_teradata_viewer.plugin.notepad.Util;
 
 /**
  * 
@@ -28,14 +26,25 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+public class XmlCodec {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    public static String encode(String s) {
+        s = Util.replaceStr(s, "&", "&amp;");
+        s = Util.replaceStr(s, "<", "&lt;");
+        s = Util.replaceStr(s, ">", "&gt;");
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+        s = Util.replaceStr(s, "\"", "&quot;");
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+        return s;
+    }
+
+    public static String decode(String s) {
+        s = Util.replaceStr(s, "&quot;", "\"");
+        s = Util.replaceStr(s, "&apos;", "'");
+        s = Util.replaceStr(s, "&gt;", ">");
+        s = Util.replaceStr(s, "&lt;", "<");
+        s = Util.replaceStr(s, "&amp;", "&");
+
+        return s;
+    }
 }

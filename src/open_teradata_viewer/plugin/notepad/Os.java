@@ -16,26 +16,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
-
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+package open_teradata_viewer.plugin.notepad;
 
 /**
- * 
- * 
- * @author D. Campione
  *
+ *
+ * @author  D. Campione
+ * 
  */
-public class Actions {
+public class Os {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    /** The file separator. Can be "/" (for Linux) or "\" (for Windows) */
+    public String fileSep;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    /** The line separator. Can be "/n" (for Linux) or "/r/n" (for Windows) */
+    public String lineSep;
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+    /** Operating system Can be "linux" etc... */
+    public String name;
+
+    /** Ctor. */
+    public Os() {
+        fileSep = System.getProperty("file.separator", "/");
+        lineSep = System.getProperty("line.separator", "/n");
+        name = System.getProperty("os.name", "unknown").toLowerCase();
+    }
 }

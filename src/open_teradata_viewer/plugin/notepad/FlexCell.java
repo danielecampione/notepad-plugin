@@ -16,11 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package open_teradata_viewer.plugin.notepad.actions;
+package open_teradata_viewer.plugin.notepad;
 
-import javax.swing.AbstractAction;
-
-import net.sourceforge.open_teradata_viewer.actions.CustomAction;
+import java.awt.Component;
 
 /**
  * 
@@ -28,14 +26,28 @@ import net.sourceforge.open_teradata_viewer.actions.CustomAction;
  * @author D. Campione
  *
  */
-public class Actions {
+class FlexCell {
 
-    public static final CustomAction NOTEPAD = new NotepadAction();
+    public static final int LEFT = 0;
+    public static final int CENTERX = 1;
+    public static final int RIGHT = 2;
+    public static final int EXPANDX = 3;
+    public static final int TOP = 0;
+    public static final int CENTERY = 1;
+    public static final int BOTTOM = 2;
+    public static final int EXPANDY = 3;
+    public int xalign;
+    public int xext;
+    public int yalign;
+    public int yext;
+    public Component component;
 
-    public static final AbstractAction FILE_NEW = new FileNewAction();
-    public static final AbstractAction FILE_OPEN = new FileOpenAction();
+    public FlexCell(int xalign, int yalign, int xext, int yext, Component c) {
+        this.xalign = xalign;
+        this.yalign = yalign;
+        this.xext = xext;
+        this.yext = yext;
 
-    public static final AbstractAction CUT = new CutAction();
-    public static final AbstractAction COPY = new CopyAction();
-    public static final AbstractAction PASTE = new PasteAction();
+        component = c;
+    }
 }
