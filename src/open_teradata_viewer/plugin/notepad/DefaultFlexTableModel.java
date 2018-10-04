@@ -62,7 +62,8 @@ public class DefaultFlexTableModel implements FlexTableModel {
         return ftc;
     }
 
-    public FlexTableColumn addColumn(String label, int width, NotepadComboBox tcb) {
+    public FlexTableColumn addColumn(String label, int width,
+            NotepadComboBox tcb) {
         FlexTableColumn ftc = addColumn(label, width, true, true);
         ftc.setCellEditor(new FlexTableEditor(tcb));
         ftc.setCellRenderer(new FlexTableRenderer(tcb));
@@ -105,7 +106,6 @@ public class DefaultFlexTableModel implements FlexTableModel {
         return ((Vector<?>) vData.elementAt(row)).elementAt(col);
     }
 
-    @SuppressWarnings("unchecked")
     public void setValueAt(Object v, int row, int col) {
         if ((ftConf != null) && (!ftConf.confirmValueChanged(row, col, v))) {
             return;

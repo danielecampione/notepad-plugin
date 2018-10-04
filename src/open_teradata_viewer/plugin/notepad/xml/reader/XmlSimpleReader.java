@@ -250,19 +250,20 @@ public class XmlSimpleReader {
     }
 
     private void printStringOfTokens(Vector<Object> tokens) {
-        ApplicationFrame.getInstance().changeLog.append("Tokens\n");
+        ApplicationFrame.getInstance().getConsole().println("Tokens");
 
         for (int i = 0; i < tokens.size(); i++) {
-            ApplicationFrame.getInstance().changeLog.append("[ " + i + " ] : ");
+            ApplicationFrame.getInstance().getConsole()
+                    .print("[ " + i + " ] : ");
 
             Object obj = tokens.elementAt(i);
 
             if ((obj instanceof String))
-                ApplicationFrame.getInstance().changeLog.append("[String]<"
-                        + obj + ">\n");
+                ApplicationFrame.getInstance().getConsole()
+                        .println("[String]<" + obj + ">");
             else
-                ApplicationFrame.getInstance().changeLog.append("["
-                        + obj.getClass().getName() + "]" + obj + "\n");
+                ApplicationFrame.getInstance().getConsole()
+                        .println("[" + obj.getClass().getName() + "]" + obj);
         }
     }
 }

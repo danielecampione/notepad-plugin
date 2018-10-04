@@ -1,3 +1,6 @@
+0.01c (17/05/2012)
+    - Guaranteed compatibility with Open Teradata Viewer 0.11a.
+
 0.01b (28/02/2012)
     - The body of the document can be splitted into paragraphs, each with its
       own independent style.

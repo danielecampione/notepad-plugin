@@ -24,6 +24,7 @@ import java.io.File;
 import javax.swing.AbstractAction;
 
 import net.sourceforge.open_teradata_viewer.ApplicationFrame;
+import net.sourceforge.open_teradata_viewer.ExceptionDialog;
 import net.sourceforge.open_teradata_viewer.Main;
 import open_teradata_viewer.plugin.notepad.Config;
 import open_teradata_viewer.plugin.notepad.FileIO;
@@ -75,11 +76,11 @@ public class FileOpenAction extends AbstractAction {
                                 Util.extractFileName(path) + " - "
                                         + Main.APPLICATION_NAME + " ( "
                                         + NotepadPlugin.getInstance() + " )");
-                ApplicationFrame.getInstance().changeLog.append(path
-                        + " has been successfully read.\n");
+                ApplicationFrame.getInstance().getConsole()
+                        .println(path + " has been successfully read.");
             }
         } catch (Throwable t) {
-            ApplicationFrame.getInstance().printStackTraceOnGUI(t);
+            ExceptionDialog.notifyException(t);
         }
     }
 }

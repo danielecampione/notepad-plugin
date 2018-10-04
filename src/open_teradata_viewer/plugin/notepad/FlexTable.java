@@ -201,7 +201,6 @@ public class FlexTable extends JScrollPane
     public void removeTableModelListener(TableModelListener l) {
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public Class getColumnClass(int index) {
         for (int row = 0; row < flexModel.getRowCount(); row++) {
             Object o = flexModel.getValueAt(row, index);

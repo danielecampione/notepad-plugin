@@ -211,7 +211,6 @@ public class TreeViewNode extends DefaultMutableTreeNode {
         return (TreeViewNode) getChildAt(index);
     }
 
-    @SuppressWarnings("unchecked")
     public void swapNodes(int i, int j) {
         if (i == j)
             return;
@@ -246,7 +245,6 @@ public class TreeViewNode extends DefaultMutableTreeNode {
         swapNodes(i, j);
     }
 
-    @SuppressWarnings("unchecked")
     public void sortChildren() {
         boolean bChanged = true;
 

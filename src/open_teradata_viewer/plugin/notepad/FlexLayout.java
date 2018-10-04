@@ -293,8 +293,11 @@ public class FlexLayout implements LayoutManager {
                                 compW = cellW;
                                 break;
                             default :
-                                ApplicationFrame.getInstance().changeLog
-                                        .append("FlexLayout: invalid X align type.\n",
+                                ApplicationFrame
+                                        .getInstance()
+                                        .getConsole()
+                                        .println(
+                                                "FlexLayout: invalid X align type.",
                                                 ApplicationFrame.WARNING_FOREGROUND_COLOR_LOG);
                                 compX = currentX;
                                 compW = cellW;
@@ -320,8 +323,11 @@ public class FlexLayout implements LayoutManager {
                                 compH = cellH;
                                 break;
                             default :
-                                ApplicationFrame.getInstance().changeLog
-                                        .append("FlexLayout: invalid Y align type.\n",
+                                ApplicationFrame
+                                        .getInstance()
+                                        .getConsole()
+                                        .println(
+                                                "FlexLayout: invalid Y align type.",
                                                 ApplicationFrame.WARNING_FOREGROUND_COLOR_LOG);
                                 compY = currentY;
                                 compH = cellH;

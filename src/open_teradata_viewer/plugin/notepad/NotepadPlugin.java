@@ -40,9 +40,10 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import net.sourceforge.open_teradata_viewer.ApplicationFrame;
+import net.sourceforge.open_teradata_viewer.ExceptionDialog;
 import net.sourceforge.open_teradata_viewer.ImageManager;
 import net.sourceforge.open_teradata_viewer.Main;
-import net.sourceforge.open_teradata_viewer.plugin.PluginEntry;
+import net.sourceforge.open_teradata_viewer.plugin.IPluginEntry;
 import open_teradata_viewer.plugin.notepad.actions.Actions;
 
 /**
@@ -52,7 +53,7 @@ import open_teradata_viewer.plugin.notepad.actions.Actions;
  * @author  D. Campione
  * 
  */
-public class NotepadPlugin extends JPanel implements PluginEntry {
+public class NotepadPlugin extends JPanel implements IPluginEntry {
 
     private static final long serialVersionUID = -2901116171964303834L;
 
@@ -140,7 +141,7 @@ public class NotepadPlugin extends JPanel implements PluginEntry {
             frame.setSize(600, 600);
             frame.setVisible(true);
         } catch (Throwable t) {
-            ApplicationFrame.getInstance().printStackTraceOnGUI(t);
+            ExceptionDialog.notifyException(t);
         }
     }
 

@@ -70,9 +70,11 @@ public class Config {
         } catch (FileNotFoundException e) {
             // The configuration file doesn't exist
         } catch (Exception e) {
-            ApplicationFrame.getInstance().changeLog.append(
-                    "Error loading config file --> " + e + "\n",
-                    ApplicationFrame.WARNING_FOREGROUND_COLOR_LOG);
+            ApplicationFrame
+                    .getInstance()
+                    .getConsole()
+                    .println("Error loading config file --> " + e,
+                            ApplicationFrame.WARNING_FOREGROUND_COLOR_LOG);
         }
     }
 
@@ -113,9 +115,12 @@ public class Config {
             new XmlWriter().write(dir + CONFIG_FILE, new XmlDocument(elRoot));
             return true;
         } catch (Exception e) {
-            ApplicationFrame.getInstance().changeLog.append(
-                    "Error saving config file --> " + dir + CONFIG_FILE + "\n",
-                    ApplicationFrame.WARNING_FOREGROUND_COLOR_LOG);
+            ApplicationFrame
+                    .getInstance()
+                    .getConsole()
+                    .println(
+                            "Error saving config file --> " + dir + CONFIG_FILE,
+                            ApplicationFrame.WARNING_FOREGROUND_COLOR_LOG);
             return false;
         }
     }
